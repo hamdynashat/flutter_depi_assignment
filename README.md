@@ -4,7 +4,7 @@ A Flutter project demonstrating user authentication using Firebase and some othe
 
 ## Overview
 
-`flutter_app` is a mobile application built with Flutter that provides a foundation for user authentication. It allows users to sign up, sign in, and manage their sessions. The app uses Firebase for backend authentication services and BLoC/Cubit for state management to handle the authentication flow.
+`flutter_app` is a mobile application built with Flutter that provides a foundation for user authentication. It allows users to sign up, sign in, and manage their sessions. The app uses Firebase for backend authentication services and BLoC/Cubit for state management to handle the authentication flow the app also contains some other features like Firebase FireStore and APIs .
 
 ## Features
 
