@@ -20,7 +20,7 @@ A Flutter project demonstrating user authentication using Firebase and some othe
 - **Firebase Authentication**: Backend service for handling user sign-up, sign-in, and session management.
 - **Cloud Firestore**: (Assumed for user data storage or other app data, based on dependency) NoSQL database for storing and syncing data.
 - **BLoC/Flutter BLoC**: State management library used for managing authentication state (`AuthCubit`).
-- 
+
 ## Authentication Flow
 
 1.  The application starts and initializes Firebase.
