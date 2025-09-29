@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "719684483990",
+    "project_id": "depi-4a8c5",
+    "storage_bucket": "depi-4a8c5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719684483990:android:cf9ae477205b0b51f0fbb7",
+        "android_client_info": {
+          "package_name": "com.depi.flutter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBL25Aezj9z0yVtrDfbb7w45OefCRhe7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
