@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/cubits/auth_cubit.dart';
+import 'package:flutter_app/firebase_services/firestore_service.dart';
 import 'package:flutter_app/screens/home_screen.dart';
 import 'package:flutter_app/screens/signup_screen.dart';
 import 'package:flutter_app/utils/app_images.dart';
@@ -44,6 +45,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     SizedBox(height: 12),
                     Image.asset(AppImages.signIn),
+                    TextFormField(
+                      controller: context.read<AuthCubit>().usernameController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(
+                        hintText: "Ex: user1",
+                        hintStyle: TextStyle(
+                          color: Colors.grey.withOpacity(0.7),
+                        ),
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12),
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: context.read<AuthCubit>().emailController,
@@ -103,13 +119,32 @@ class _LoginScreenState extends State<LoginScreen> {
                                       .trim(),
                                 ) ==
                                 true
-                            ? Navigator.pushAndRemoveUntil(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (builder) => HomeScreen(),
+                            ? {
+                                await FireStoreService().loginCollection(
+                                  username: context
+                                      .read<AuthCubit>()
+                                      .usernameController
+                                      .text
+                                      .trim(),
+                                  email: context
+                                      .read<AuthCubit>()
+                                      .emailController
+                                      .text
+                                      .trim(),
+                                  password: context
+                                      .read<AuthCubit>()
+                                      .passwordController
+                                      .text
+                                      .trim(),
                                 ),
-                                (route) => false,
-                              )
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (builder) => HomeScreen(),
+                                  ),
+                                  (route) => false,
+                                ),
+                              }
                             : null;
                       },
                       child: Container(
@@ -144,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               MaterialPageRoute(
                                 builder: (builder) => SignupScreen(),
                               ),
-                                  (route) => false,
+                              (route) => false,
                             );
                           },
                           child: Text(

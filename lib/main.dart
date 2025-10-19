@@ -1,14 +1,19 @@
+import 'package:encrypt_shared_preferences/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/cubits/auth_cubit.dart';
 import 'package:flutter_app/cubits/popular_people_cubit.dart';
 import 'package:flutter_app/firebase_options.dart';
+import 'package:flutter_app/firebase_services/notification_services/firebase_notification_services.dart';
 import 'package:flutter_app/screens/auth_gate_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseNotificationService().setUp();
+  await EncryptedSharedPreferences.initialize("myKey12520052005");
+
   runApp(const MyApp());
 }
 

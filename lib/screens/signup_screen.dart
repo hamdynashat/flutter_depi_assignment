@@ -69,6 +69,53 @@ class _LoginScreenState extends State<SignupScreen> {
                     ),
                     SizedBox(height: 12),
                     TextFormField(
+                      controller: context.read<AuthCubit>().firstNameController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(
+                        hintText: "First Name",
+                        hintStyle: TextStyle(
+                          color: Colors.grey.withOpacity(0.7),
+                        ),
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    TextFormField(
+                      controller: context
+                          .read<AuthCubit>()
+                          .secondNameController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(
+                        hintText: "Second Name",
+                        hintStyle: TextStyle(
+                          color: Colors.grey.withOpacity(0.7),
+                        ),
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    TextFormField(
+                      controller: context.read<AuthCubit>().lastNameController,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      decoration: InputDecoration(
+                        hintText: "Last Name",
+                        hintStyle: TextStyle(
+                          color: Colors.grey.withOpacity(0.7),
+                        ),
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12),
+                    TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: context.read<AuthCubit>().emailController,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -114,51 +161,15 @@ class _LoginScreenState extends State<SignupScreen> {
                     SizedBox(height: 12),
                     InkWell(
                       onTap: () async {
-                        await context.read<AuthCubit>().signUp(
-                                  context
-                                      .read<AuthCubit>()
-                                      .emailController
-                                      .text
-                                      .trim(),
-                                  context
-                                      .read<AuthCubit>()
-                                      .passwordController
-                                      .text
-                                      .trim(),
-                                ) ==
-                                true
+                        await context.read<AuthCubit>().signUp() == true
                             ? {
-                                await FireStoreService().createCollection(
-                                  username: context
-                                      .read<AuthCubit>()
-                                      .usernameController
-                                      .text
-                                      .trim(),
-                                  email: context
-                                      .read<AuthCubit>()
-                                      .emailController
-                                      .text
-                                      .trim(),
-                                  password: context
-                                      .read<AuthCubit>()
-                                      .passwordController
-                                      .text
-                                      .trim(),
-                                ),
-                                changeButtonColor(),
-                                await Future.delayed(
-                                  Duration(milliseconds: 500),
-                                ),
-                                changeButtonColor(),
-
                                 Navigator.pushAndRemoveUntil(
                                   context,
                                   MaterialPageRoute(
                                     builder: (builder) => LoginScreen(),
                                   ),
                                   (route) => false,
-                                ),
-                              }
+                                )}
                             : null;
                       },
                       child: AnimatedContainer(
